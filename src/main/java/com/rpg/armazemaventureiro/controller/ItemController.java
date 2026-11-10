@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,5 +44,18 @@ public class ItemController {
         item.setId(null);
         Item salvo = itemRepository.save(item);
         return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
+    }
+
+    @PutMapping("/{id}")
+    public Item atualizar(@PathVariable Long id, @Valid @RequestBody Item dados) {
+        Item existente = itemRepository.findById(id).orElseThrow(ItemNaoEncontradoException::new);
+        if (itemRepository.existsByNomeIgnoreCaseAndIdNot(dados.getNome(), id)) {
+            throw new NomeDuplicadoException(dados.getNome());
+        }
+        existente.setNome(dados.getNome());
+        existente.setRaridade(dados.getRaridade());
+        existente.setPreco(dados.getPreco());
+        existente.setNivelMinimo(dados.getNivelMinimo());
+        return itemRepository.save(existente);
     }
 }
