@@ -1,9 +1,11 @@
 package com.rpg.armazemaventureiro.controller;
 
+import com.rpg.armazemaventureiro.exception.ItemNaoEncontradoException;
 import com.rpg.armazemaventureiro.model.Item;
 import com.rpg.armazemaventureiro.repository.ItemRepository;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +22,10 @@ public class ItemController {
     @GetMapping
     public List<Item> listar() {
         return itemRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Item buscarPorId(@PathVariable Long id) {
+        return itemRepository.findById(id).orElseThrow(ItemNaoEncontradoException::new);
     }
 }
