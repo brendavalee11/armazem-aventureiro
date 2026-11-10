@@ -17,4 +17,13 @@ public class GlobalExceptionHandler {
                 List.of(ex.getMessage()));
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(corpo);
     }
+
+    @ExceptionHandler(NomeDuplicadoException.class)
+    public ResponseEntity<ErroResposta> tratarNomeDuplicado(NomeDuplicadoException ex) {
+        ErroResposta corpo = new ErroResposta(
+                HttpStatus.CONFLICT.value(),
+                "Nome duplicado",
+                List.of(ex.getMessage()));
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(corpo);
+    }
 }
