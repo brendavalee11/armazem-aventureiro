@@ -39,7 +39,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<ErroResposta> tratarHttpMessageNotReadableTemporario(HttpMessageNotReadableException ex) {
+    public ResponseEntity<ErroResposta> tratarHttpMessageNotReadable(HttpMessageNotReadableException ex) {
         Throwable causa = ex.getCause();
         if (causa instanceof InvalidFormatException) {
             ErroResposta corpo = new ErroResposta(HttpStatus.BAD_REQUEST.value(),"Raridade Inválida", List.of("As raridades reconhecidas são: COMUM, INCOMUM, RARO, ÉPICO, LENDÁRIO"));
