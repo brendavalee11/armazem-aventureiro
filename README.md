@@ -178,7 +178,7 @@ Resposta (400):
   "status": 400,
   "erro": "Dados inválidos",
   "mensagens": [
-    "Nilo não consegue registrar uma mercadoria sem nome. Informe o nome do item."
+    "Informe o nome do item"
   ]
 }
 ```

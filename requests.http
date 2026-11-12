@@ -1,0 +1,86 @@
+### 01 - Listar todos os itens
+GET http://localhost:8080/api/itens
+
+### 02 - Buscar item por id
+GET http://localhost:8080/api/itens/1
+
+### 03 - Buscar item inexistente
+GET http://localhost:8080/api/itens/999
+
+### 04 - Criar item válido
+POST http://localhost:8080/api/itens
+Content-Type: application/json
+
+{"nome": "Item de Teste", "raridade": "RARO", "preco": 100.00, "nivelMinimo": 10}
+
+### 05 - Criar item com nome repetido
+POST http://localhost:8080/api/itens
+Content-Type: application/json
+
+{"nome": "Item de Teste", "raridade": "RARO", "preco": 100.00, "nivelMinimo": 10}
+
+### 06 - Criar item com nome vazio
+POST http://localhost:8080/api/itens
+Content-Type: application/json
+
+{"nome": "", "raridade": "COMUM", "preco": 10.00, "nivelMinimo": 1}
+
+### 07 - Criar item com nome de mais de 100 caracteres
+POST http://localhost:8080/api/itens
+Content-Type: application/json
+
+{"nome": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "raridade": "COMUM", "preco": 10.00, "nivelMinimo": 1}
+
+### 08 - Criar item com preço negativo
+POST http://localhost:8080/api/itens
+Content-Type: application/json
+
+{"nome": "Item Preco Negativo", "raridade": "COMUM", "preco": -1.00, "nivelMinimo": 1}
+
+### 09 - Criar item com nivelMinimo 0
+POST http://localhost:8080/api/itens
+Content-Type: application/json
+
+{"nome": "Item Nivel Zero", "raridade": "COMUM", "preco": 10.00, "nivelMinimo": 0}
+
+### 10 - Criar item com nivelMinimo 101
+POST http://localhost:8080/api/itens
+Content-Type: application/json
+
+{"nome": "Item Nivel 101", "raridade": "COMUM", "preco": 10.00, "nivelMinimo": 101}
+
+### 11 - Criar item com raridade inexistente
+POST http://localhost:8080/api/itens
+Content-Type: application/json
+
+{"nome": "Item Raridade Invalida", "raridade": "XYZ", "preco": 10.00, "nivelMinimo": 1}
+
+### 12 - Criar item com JSON quebrado
+POST http://localhost:8080/api/itens
+Content-Type: application/json
+
+{"nome":
+
+### 13 - Atualizar item válido
+PUT http://localhost:8080/api/itens/21
+Content-Type: application/json
+
+{"nome": "Item de Teste Atualizado", "raridade": "EPICO", "preco": 200.00, "nivelMinimo": 20}
+
+### 14 - Atualizar com nome de outro item
+PUT http://localhost:8080/api/itens/21
+Content-Type: application/json
+
+{"nome": "Poção de Cura Menor", "raridade": "EPICO", "preco": 200.00, "nivelMinimo": 20}
+
+### 15 - Atualizar item inexistente
+PUT http://localhost:8080/api/itens/999
+Content-Type: application/json
+
+{"nome": "Item Inexistente", "raridade": "COMUM", "preco": 10.00, "nivelMinimo": 1}
+
+### 16 - Remover item existente
+DELETE http://localhost:8080/api/itens/21
+
+### 17 - Remover item inexistente
+DELETE http://localhost:8080/api/itens/21
