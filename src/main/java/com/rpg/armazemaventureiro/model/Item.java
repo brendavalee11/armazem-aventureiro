@@ -22,25 +22,25 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Informe o nome do item")
-    @Size(max = 100, message = "Este nome é grande demais, utilize no máximo 100 caracteres")
+    @NotBlank(message = "Nilo não consegue registrar uma mercadoria sem nome. Informe o nome do item.")
+    @Size(max = 100, message = "Esse nome é longo demais para o livro de registros! Utilize no máximo 100 caracteres.")
 
     @Column(unique = true)
     private String nome;
 
-    @NotNull(message = "Informe a raridade do item: COMUM, INCOMUM, RARO, ÉPICO ou LENDÁRIO")
+    @NotNull(message = "Nilo precisa saber a classificação da sua mercadoria! Escolha uma raridade: COMUM, INCOMUM, RARO, EPICO ou LENDARIO.")
 
     @Enumerated(EnumType.STRING)
     private Raridade raridade;
 
-    @NotNull(message = "Informe o preço do item")
+    @NotNull(message = "Toda mercadoria tem seu valor! Nilo precisa que você informe o preço do item antes de registrá-lo.")
 
-    @DecimalMin(value = "0.0", message = "Informe um preço maior ou igual a zero")
+    @DecimalMin(value = "0.0", message = "Nilo não vende mercadorias por valores negativos. Informe um preço maior ou igual a zero.")
 
     private BigDecimal preco;
 
-    @Min(value = 1, message = "O nível mínimo deve ser de 1 até 100")
-    @Max(value = 1, message = "O nível mínimo deve ser de 1 até 100")
+    @Min(value = 1, message = "Esse requisito não cabe nas regras do armazém! O nível mínimo deve estar entre 1 e 100.")
+    @Max(value = 100, message = "Esse requisito não cabe nas regras do armazém! O nível mínimo deve estar entre 1 e 100.")
 
     private Integer nivelMinimo;
 
